@@ -1,12 +1,3 @@
-Of course! Here is the complete README file formatted in Markdown, ready to be copied and pasted directly into a README.md file in your repository.
-
-Just click the "Copy" button in the top-right corner of the code block below.
-
-Generated markdown
-<br/>
-<p align="center">
-  <img src="https://i.imgur.com/OAbOU37.png" alt="FineTuning Logo" width="150"/>
-</p>
 
 <h1 align="center">🤖 FineTuning Toolkit</h1>
 
