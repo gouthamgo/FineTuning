@@ -193,11 +193,3 @@ If you use this library in your research, please consider citing the original pa
 LoRA: Hu, E. J., Shen, Y., Wallis, P., Allen-Zhu, Z., Li, Y., Wang, S., Wang, L., & Chen, W. (2021). LoRA: Low-Rank Adaptation of Large Language Models. arXiv:2106.09685
 
 VERA: Kopiczko, M., J. P. Ebrahimi, K. S. Kumar, and L. Rimanic. (2023). VERA: Vector-based Random Matrix Adaptation. arXiv:2310.11454
-
-
-Generated code
-IGNORE_WHEN_COPYING_START
-content_copy
-download
-Use code with caution.
-IGNORE_WHEN_COPYING_END
