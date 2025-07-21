@@ -194,11 +194,4 @@ LoRA: Hu, E. J., Shen, Y., Wallis, P., Allen-Zhu, Z., Li, Y., Wang, S., Wang, L.
 
 VERA: Kopiczko, M., J. P. Ebrahimi, K. S. Kumar, and L. Rimanic. (2023). VERA: Vector-based Random Matrix Adaptation. arXiv:2310.11454
 
-(Add citations for other methods as needed)
 
-Generated code
-IGNORE_WHEN_COPYING_START
-content_copy
-download
-Use code with caution.
-IGNORE_WHEN_COPYING_END
