@@ -5,7 +5,6 @@ A practical, no-nonsense guide to fine-tuning transformer models locally with Hu
 ## 📋 Table of Contents
 - [What is Fine-Tuning?](#what-is-fine-tuning)
 - [When Do You Need It?](#when-do-you-need-it)
-- [Quick Start](#quick-start)
 - [Installation](#installation)
 - [Basic Example](#basic-example)
 - [Advanced Tips](#advanced-tips)
@@ -34,16 +33,6 @@ Think of it like hiring someone who already speaks English fluently and training
 - You have 1000+ labeled examples
 - Accuracy really matters for your use case
 
-## Quick Start
-
-```bash
-git clone https://github.com/yourusername/finetuning-guide
-cd finetuning-guide
-pip install -r requirements.txt
-python examples/basic_classification.py
-```
-
-## Installation
 
 ## Installation
 
