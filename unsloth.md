@@ -55,3 +55,4 @@ A Python library that wraps around HuggingFace transformers and makes fine-tunin
 
 **Bottom line:** It's a tool that makes fine-tuning models practical for regular people instead of just big companies with expensive hardware.
 
+**LoRA Fine-tuning:** Instead of updating the entire model, it only trains small "adapter" layers. This is why it's so fast and memory-efficient.
