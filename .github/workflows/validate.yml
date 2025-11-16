@@ -1,0 +1,123 @@
+name: Validate Changes
+
+# Runs validation checks on all pushes and PRs
+# This ensures code quality before merging
+
+on:
+  push:
+    branches:
+      - '**'
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Validate Jupyter Notebooks
+        run: |
+          echo "🔍 Validating Jupyter notebooks..."
+
+          # Check if notebooks exist
+          if ! find lessons -name "*.ipynb" -type f | grep -q .; then
+            echo "ℹ️ No notebooks found to validate"
+            exit 0
+          fi
+
+          # Validate each notebook is valid JSON
+          FAILED=0
+          for notebook in $(find lessons -name "*.ipynb" -type f); do
+            echo "Checking: $notebook"
+            if python3 -m json.tool "$notebook" > /dev/null 2>&1; then
+              echo "  ✅ Valid"
+            else
+              echo "  ❌ Invalid JSON in notebook: $notebook"
+              FAILED=1
+            fi
+          done
+
+          if [ $FAILED -eq 1 ]; then
+            echo "❌ Some notebooks have invalid JSON"
+            exit 1
+          fi
+
+          echo "✅ All notebooks are valid!"
+
+      - name: Check for large files
+        run: |
+          echo "🔍 Checking for large files (>10MB)..."
+
+          # Find files larger than 10MB
+          LARGE_FILES=$(find . -type f -size +10M -not -path "./.git/*" || true)
+
+          if [ -n "$LARGE_FILES" ]; then
+            echo "⚠️ Warning: Large files detected:"
+            echo "$LARGE_FILES"
+            echo ""
+            echo "Consider using Git LFS for files >10MB"
+          else
+            echo "✅ No large files detected"
+          fi
+
+      - name: Validate README and docs
+        run: |
+          echo "🔍 Checking documentation..."
+
+          # Check if README exists and has content
+          if [ -f README.md ]; then
+            LINES=$(wc -l < README.md)
+            if [ $LINES -gt 10 ]; then
+              echo "✅ README.md exists and has content ($LINES lines)"
+            else
+              echo "⚠️ README.md is very short ($LINES lines)"
+            fi
+          else
+            echo "❌ README.md not found!"
+            exit 1
+          fi
+
+          # Check if DEPLOYMENT.md exists
+          if [ -f DEPLOYMENT.md ]; then
+            echo "✅ DEPLOYMENT.md exists"
+          else
+            echo "ℹ️ DEPLOYMENT.md not found (optional)"
+          fi
+
+      - name: Check Python files (if any)
+        run: |
+          echo "🔍 Checking Python files..."
+
+          if find . -name "*.py" -type f -not -path "./.git/*" | grep -q .; then
+            echo "Python files found, checking syntax..."
+
+            for pyfile in $(find . -name "*.py" -type f -not -path "./.git/*"); do
+              echo "Checking: $pyfile"
+              if python3 -m py_compile "$pyfile" 2>/dev/null; then
+                echo "  ✅ Valid"
+              else
+                echo "  ❌ Syntax error in: $pyfile"
+                exit 1
+              fi
+            done
+
+            echo "✅ All Python files have valid syntax"
+          else
+            echo "ℹ️ No Python files to validate"
+          fi
+
+      - name: Summary
+        if: success()
+        run: |
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "✅ ALL VALIDATION CHECKS PASSED!"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"

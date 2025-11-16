@@ -1,0 +1,92 @@
+name: Auto-PR for Claude Code Branches (Safer Alternative)
+
+# This workflow creates a PR instead of direct merge
+# Use this if you want a record/review option before merging
+
+on:
+  push:
+    branches:
+      - 'claude/**'
+
+jobs:
+  create-pr:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Get branch name
+        id: branch
+        run: |
+          BRANCH_NAME="${GITHUB_REF#refs/heads/}"
+          echo "name=$BRANCH_NAME" >> $GITHUB_OUTPUT
+
+      - name: Create Pull Request
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Check if PR already exists
+          EXISTING_PR=$(gh pr list --head "${{ steps.branch.outputs.name }}" --base main --json number --jq '.[0].number')
+
+          if [ -n "$EXISTING_PR" ]; then
+            echo "ℹ️ PR already exists: #$EXISTING_PR"
+            echo "Updating PR description..."
+
+            gh pr edit "$EXISTING_PR" --body "## Auto-generated PR from Claude Code
+
+            **Branch:** \`${{ steps.branch.outputs.name }}\`
+            **Latest commit:** ${{ github.sha }}
+            **Triggered by:** ${{ github.actor }}
+
+            ### Changes
+            This PR contains changes made during a Claude Code session.
+
+            ### Auto-merge
+            This PR will auto-merge when:
+            - ✅ All checks pass
+            - ✅ No merge conflicts
+
+            ---
+            *Updated: $(date)*"
+
+          else
+            echo "Creating new PR..."
+
+            gh pr create \
+              --base main \
+              --head "${{ steps.branch.outputs.name }}" \
+              --title "🤖 Claude Code: ${{ steps.branch.outputs.name }}" \
+              --body "## Auto-generated PR from Claude Code
+
+            **Branch:** \`${{ steps.branch.outputs.name }}\`
+            **Commit:** ${{ github.sha }}
+            **Triggered by:** ${{ github.actor }}
+
+            ### Changes
+            This PR contains changes made during a Claude Code session.
+
+            ### Auto-merge
+            This PR will auto-merge when:
+            - ✅ All checks pass
+            - ✅ No merge conflicts
+
+            ---
+            *Created: $(date)*"
+
+            echo "✅ PR created successfully!"
+          fi
+
+      - name: Enable auto-merge
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PR_NUMBER=$(gh pr list --head "${{ steps.branch.outputs.name }}" --base main --json number --jq '.[0].number')
+
+          if [ -n "$PR_NUMBER" ]; then
+            echo "Enabling auto-merge for PR #$PR_NUMBER..."
+            gh pr merge "$PR_NUMBER" --auto --merge || echo "Auto-merge may not be enabled for this repo"
+          fi

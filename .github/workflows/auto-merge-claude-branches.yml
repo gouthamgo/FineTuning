@@ -1,0 +1,126 @@
+name: Auto-merge Claude Code Branches
+
+on:
+  push:
+    branches:
+      - 'claude/**'  # Triggers on any branch starting with claude/
+
+jobs:
+  auto-merge:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Fetch all history for proper merging
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Get branch name
+        id: branch
+        run: |
+          BRANCH_NAME="${GITHUB_REF#refs/heads/}"
+          echo "name=$BRANCH_NAME" >> $GITHUB_OUTPUT
+          echo "Branch: $BRANCH_NAME"
+
+      - name: Validate notebooks (optional check)
+        run: |
+          echo "✅ Validating Jupyter notebooks..."
+          # Check if .ipynb files are valid JSON
+          if find lessons -name "*.ipynb" -type f | grep -q .; then
+            for notebook in $(find lessons -name "*.ipynb" -type f); do
+              if ! python3 -m json.tool "$notebook" > /dev/null 2>&1; then
+                echo "❌ Invalid notebook: $notebook"
+                exit 1
+              fi
+              echo "✅ Valid: $notebook"
+            done
+          fi
+          echo "✅ All notebooks valid!"
+
+      - name: Check for merge conflicts with main
+        run: |
+          echo "🔍 Checking for merge conflicts..."
+          git fetch origin main
+
+          # Try a test merge to see if there are conflicts
+          git merge-tree $(git merge-base HEAD origin/main) HEAD origin/main > /dev/null 2>&1
+          if [ $? -ne 0 ]; then
+            echo "⚠️ Potential merge conflicts detected"
+            echo "Will attempt merge anyway - GitHub will handle conflicts"
+          else
+            echo "✅ No merge conflicts detected"
+          fi
+
+      - name: Merge to main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "🚀 Auto-merging ${{ steps.branch.outputs.name }} to main..."
+
+          # Fetch latest main
+          git fetch origin main
+          git checkout main
+          git pull origin main
+
+          # Merge the Claude branch
+          if git merge --no-ff "${{ steps.branch.outputs.name }}" -m "Auto-merge: ${{ steps.branch.outputs.name }} to main
+
+          Automatically merged by GitHub Actions.
+          Branch: ${{ steps.branch.outputs.name }}
+          Commit: ${{ github.sha }}
+          Triggered by: ${{ github.actor }}"; then
+
+            echo "✅ Merge successful!"
+
+            # Push to main
+            git push origin main
+            echo "✅ Pushed to main successfully!"
+
+          else
+            echo "❌ Merge failed - conflicts detected"
+            echo "Creating a Pull Request instead for manual review..."
+            git merge --abort
+
+            # Create PR instead
+            gh pr create \
+              --base main \
+              --head "${{ steps.branch.outputs.name }}" \
+              --title "Auto-merge: ${{ steps.branch.outputs.name }}" \
+              --body "⚠️ Automatic merge failed due to conflicts.
+
+              Please review and merge manually.
+
+              **Branch:** \`${{ steps.branch.outputs.name }}\`
+              **Commit:** ${{ github.sha }}
+              **Triggered by:** ${{ github.actor }}" || echo "PR may already exist"
+
+            exit 1
+          fi
+
+      - name: Cleanup old Claude branches (optional)
+        if: success()
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "🧹 Cleaning up merged branch..."
+          # Delete the Claude branch after successful merge
+          git push origin --delete "${{ steps.branch.outputs.name }}" || echo "Branch already deleted or cannot delete"
+
+      - name: Summary
+        if: success()
+        run: |
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "✅ AUTO-MERGE SUCCESSFUL!"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "Branch: ${{ steps.branch.outputs.name }}"
+          echo "Merged to: main"
+          echo "Status: ✅ Complete"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
