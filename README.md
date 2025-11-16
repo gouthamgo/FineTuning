@@ -33,9 +33,26 @@ This is a **complete, hands-on learning platform** designed for beginners who wa
 
 ---
 
-## 🚀 Quick Start
+## 🚀 Quick Start (Zero Setup Required!)
 
-### Option 1: Local Setup (Recommended)
+### ⭐ Recommended: Use Google Colab (100% Free)
+
+**No installation needed! Start learning in 30 seconds:**
+
+1. **Pick a lesson** from the table below
+2. **Click the "Open in Colab" badge** in the notebook
+3. **Run the cells** - Free GPU included!
+
+That's it! All notebooks have this badge at the top:
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/gouthamgo/FineTuning/blob/main/lessons/module1_foundations/01_what_is_finetuning.ipynb)
+
+**First time?** Start with [Lesson 1.1: What is Fine-Tuning?](https://colab.research.google.com/github/gouthamgo/FineTuning/blob/main/lessons/module1_foundations/01_what_is_finetuning.ipynb)
+
+---
+
+### 💻 Alternative: Local Setup
+
+Want to run notebooks locally?
 
 ```bash
 # 1. Clone the repository
@@ -52,21 +69,37 @@ jupyter lab
 # Navigate to: lessons/module1_foundations/01_what_is_finetuning.ipynb
 ```
 
-### Option 2: Google Colab (Free GPU!)
+---
 
-1. Open [Google Colab](https://colab.research.google.com/)
-2. Upload notebook from `lessons/` folder
-3. Change runtime to GPU (Runtime → Change runtime type → GPU)
-4. Start learning!
+### 📊 Web Dashboard (Optional)
 
-### Option 3: Launch Progress Dashboard
+Want a visual progress tracker?
+
+**Option A: Use Our Hosted Dashboard (Coming Soon)**
+- Visit: [finetuning-learn.streamlit.app](#) (TBD)
+- Browse lessons and track progress
+- No installation required
+
+**Option B: Run Your Own Dashboard**
 
 ```bash
-# Run the Streamlit dashboard
-streamlit run webapp/app.py
+# Install Streamlit
+pip install streamlit streamlit-option-menu
 
+# Run locally
+streamlit run webapp/app.py
 # Opens at http://localhost:8501
 ```
+
+**Option C: Deploy Your Own (Free!)**
+
+Fork this repo and deploy to Streamlit Cloud for free:
+1. Fork this repository
+2. Go to [share.streamlit.io](https://share.streamlit.io)
+3. Deploy `webapp/app.py`
+4. Share your custom learning platform!
+
+See [DEPLOYMENT.md](DEPLOYMENT.md) for details.
 
 ---
 
@@ -172,22 +205,55 @@ Then you'll:
 
 ---
 
+## 💰 Cost: $0 (Yes, Really!)
+
+### How is This Free?
+
+We use only free tools and services:
+
+| Component | Service | Cost |
+|-----------|---------|------|
+| **Notebooks Hosting** | GitHub | $0 |
+| **Running Notebooks** | Google Colab (Free GPU!) | $0 |
+| **Dashboard Hosting** | Streamlit Cloud | $0 |
+| **Pre-trained Models** | HuggingFace Hub | $0 |
+| **Datasets** | HuggingFace Datasets | $0 |
+
+**Total:** $0 💸
+
+### What About GPU?
+
+Google Colab provides **free GPU access**:
+- NVIDIA T4 GPU (16GB)
+- Up to 12 hours per session
+- Perfect for fine-tuning smaller models
+- Worth $100s/month if you paid for it!
+
+**No credit card required. No hidden fees. Actually free.**
+
+---
+
 ## 🛠️ Requirements
 
-### Software
+### For Colab (Recommended)
+- Google account (free)
+- Web browser
+- That's it!
+
+### For Local Setup
 - Python 3.10+
-- Jupyter Lab or Google Colab
-- (Optional) Streamlit for dashboard
+- Jupyter Lab
+- (Optional) GPU for faster training
 
-### Hardware Options
+### Hardware Comparison
 
-| Option | What You Can Do | Cost |
-|--------|----------------|------|
-| **CPU Only** | All lessons (slow training) | Free |
-| **Google Colab Free** | All lessons with GPU | Free |
-| **Local GPU (8GB+)** | Fast training, all projects | Hardware cost |
+| Option | What You Can Do | Cost | Speed |
+|--------|----------------|------|-------|
+| **Google Colab Free** | All lessons + GPU | $0 | Fast ⚡ |
+| **Local CPU** | All lessons | $0 | Slow 🐌 |
+| **Local GPU (8GB+)** | All projects | Hardware cost | Very Fast ⚡⚡ |
 
-**Recommendation:** Start with Google Colab (free GPU), then move to local if needed.
+**Our Recommendation:** Start with Google Colab (free + fast), then move to local if needed.
 
 ---
 
