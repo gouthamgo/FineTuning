@@ -34,8 +34,8 @@ export default function Home() {
           duration: "1 hour",
           difficulty: "Beginner",
           description: "Data is like ingredients for cooking. Bad ingredients = bad food. I'll show you how to prep your data like a chef!",
-          colabUrl: "",
-          status: "coming_soon",
+          colabUrl: "https://colab.research.google.com/github/gouthamgo/FineTuning/blob/main/lessons/module1_foundations/03_understanding_data.ipynb",
+          status: "available",
           icon: "📊"
         }
       ]
@@ -56,6 +56,120 @@ export default function Home() {
           status: "available",
           featured: true,
           icon: "⚡"
+        },
+        {
+          id: "m2l2",
+          title: "Making Your Model Better (Hyperparameter Tuning)",
+          duration: "1.5 hours",
+          difficulty: "Intermediate",
+          description: "Learn the secret dials and knobs that make your model go from good to GREAT! We'll experiment with learning rates, batch sizes, and more.",
+          colabUrl: "https://colab.research.google.com/github/gouthamgo/FineTuning/blob/main/lessons/module2_first_training/02_hyperparameter_tuning.ipynb",
+          status: "available",
+          icon: "🎛️"
+        },
+        {
+          id: "m2l3",
+          title: "Debugging Like a Pro (When Things Go Wrong)",
+          duration: "1 hour",
+          difficulty: "Intermediate",
+          description: "Your model will fail. A lot. Learn how to fix the most common errors fast and become a debugging ninja!",
+          colabUrl: "https://colab.research.google.com/github/gouthamgo/FineTuning/blob/main/lessons/module2_first_training/03_debugging_training.ipynb",
+          status: "available",
+          icon: "🔧"
+        }
+      ]
+    },
+    module3: {
+      title: "🎯 Advanced Techniques",
+      emoji: "🔵",
+      subtitle: "Level up your skills!",
+      duration: "Week 3",
+      lessons: [
+        {
+          id: "m3l1",
+          title: "LoRA & QLoRA (Train HUGE Models on Free GPUs!)",
+          duration: "1.5 hours",
+          difficulty: "Advanced",
+          description: "Train models with BILLIONS of parameters using these clever tricks. Same results, way less memory!",
+          colabUrl: "",
+          status: "coming_soon",
+          icon: "🚀"
+        },
+        {
+          id: "m3l2",
+          title: "Multi-Task Learning (One Model, Many Jobs)",
+          duration: "1.5 hours",
+          difficulty: "Advanced",
+          description: "Train your model to do multiple tasks at once. Sentiment analysis AND summarization? Easy!",
+          colabUrl: "",
+          status: "coming_soon",
+          icon: "🎨"
+        },
+        {
+          id: "m3l3",
+          title: "Custom Loss Functions (Get Creative!)",
+          duration: "1 hour",
+          difficulty: "Advanced",
+          description: "Sometimes the default loss function isn't enough. Let's write our own!",
+          colabUrl: "",
+          status: "coming_soon",
+          icon: "🎲"
+        }
+      ]
+    },
+    module4: {
+      title: "💼 Real-World Projects",
+      emoji: "🟠",
+      subtitle: "Build something awesome!",
+      duration: "Week 4",
+      lessons: [
+        {
+          id: "m4l1",
+          title: "Project: Build a Smart Customer Support Bot",
+          duration: "3 hours",
+          difficulty: "Intermediate",
+          description: "End-to-end project: Fine-tune a model to answer customer questions based on your company docs.",
+          colabUrl: "",
+          status: "coming_soon",
+          icon: "💬"
+        },
+        {
+          id: "m4l2",
+          title: "Project: Create a Code Review Assistant",
+          duration: "3 hours",
+          difficulty: "Advanced",
+          description: "Train a model to review code, catch bugs, and suggest improvements. Like having a senior dev on your team!",
+          colabUrl: "",
+          status: "coming_soon",
+          icon: "💻"
+        }
+      ]
+    },
+    module5: {
+      title: "🌐 Deployment & Production",
+      emoji: "🟣",
+      subtitle: "Ship it to the world!",
+      duration: "Week 5",
+      lessons: [
+        {
+          id: "m5l1",
+          title: "Deploy Your Model (Make it Public!)",
+          duration: "2 hours",
+          difficulty: "Intermediate",
+          description: "From Colab to the cloud! Deploy your model using HuggingFace Spaces, Gradio, or FastAPI.",
+          colabUrl: "",
+          status: "coming_soon",
+          icon: "🚀"
+        },
+        {
+          id: "m5l2",
+          title: "Monitoring & Improving (Keep it Running!)",
+          duration: "1.5 hours",
+          difficulty: "Advanced",
+          description: "Track performance, handle errors, and continuously improve your deployed model.",
+          colabUrl: "",
+          status: "coming_soon",
+          icon: "📊"
         }
       ]
     }
