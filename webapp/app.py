@@ -1,6 +1,6 @@
 """
-Fine-Tuning Learning Platform - Public Dashboard
-Free, open-source learning platform for transformer fine-tuning
+Fine-Tuning Learning Platform - Ultra Modern Design
+Trendy, beautiful, and beginner-friendly!
 """
 
 import streamlit as st
@@ -8,62 +8,301 @@ from streamlit_option_menu import option_menu
 
 # Page configuration
 st.set_page_config(
-    page_title="Fine-Tuning Learning Platform",
+    page_title="Fine-Tuning Academy",
     page_icon="🚀",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS
+# Modern CSS with glassmorphism and animations
 st.markdown("""
 <style>
-    .main-header {
-        font-size: 3rem;
-        font-weight: bold;
+    /* Import modern font */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+    * {
+        font-family: 'Inter', sans-serif;
+    }
+
+    /* Hide Streamlit branding */
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+
+    /* Animated gradient background */
+    .stApp {
+        background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #4facfe);
+        background-size: 400% 400%;
+        animation: gradient 15s ease infinite;
+    }
+
+    @keyframes gradient {
+        0% {background-position: 0% 50%;}
+        50% {background-position: 100% 50%;}
+        100% {background-position: 0% 50%;}
+    }
+
+    /* Glassmorphism effect for main container */
+    .main .block-container {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 2rem;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    /* Modern header with text gradient */
+    .hero-title {
+        font-size: 4rem;
+        font-weight: 800;
         text-align: center;
-        margin-bottom: 1rem;
-        background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+        margin-bottom: 0.5rem;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: fadeInDown 1s ease-out;
     }
-    .lesson-card {
-        padding: 1.5rem;
-        border-radius: 0.5rem;
-        border: 1px solid #e0e0e0;
+
+    .hero-subtitle {
+        font-size: 1.5rem;
+        text-align: center;
+        color: #4a5568;
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+        animation: fadeInUp 1s ease-out;
+    }
+
+    .hero-tags {
+        text-align: center;
+        font-size: 1.1rem;
+        color: #718096;
+        margin-bottom: 2rem;
+        animation: fadeIn 1.5s ease-out;
+    }
+
+    /* Fade in animations */
+    @keyframes fadeInDown {
+        from {
+            opacity: 0;
+            transform: translateY(-30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeIn {
+        from {opacity: 0;}
+        to {opacity: 1;}
+    }
+
+    /* Modern cards with hover effect */
+    .feature-card {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 2rem;
+        border-radius: 16px;
+        color: white;
+        text-align: center;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        height: 100%;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 20px 40px rgba(102, 126, 234, 0.4);
+    }
+
+    .feature-icon {
+        font-size: 3rem;
         margin-bottom: 1rem;
+    }
+
+    .feature-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+    }
+
+    .feature-desc {
+        font-size: 1rem;
+        opacity: 0.9;
+        line-height: 1.6;
+    }
+
+    /* Lesson cards - ultra modern */
+    .lesson-card {
         background: white;
+        border-radius: 20px;
+        padding: 2rem;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        border: 2px solid transparent;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
     }
+
+    .lesson-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+        background-size: 200% 100%;
+        animation: shimmer 3s infinite;
+    }
+
+    @keyframes shimmer {
+        0% {background-position: 200% 0;}
+        100% {background-position: -200% 0;}
+    }
+
     .lesson-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 50px rgba(102, 126, 234, 0.3);
         border-color: #667eea;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
-    .colab-button {
-        background: linear-gradient(90deg, #f9ab00 0%, #f57c00 100%);
-        color: white;
-        padding: 0.5rem 1rem;
-        border-radius: 0.25rem;
-        text-decoration: none;
-        font-weight: bold;
+
+    /* Status badges - modern pills */
+    .badge {
         display: inline-block;
-    }
-    .progress-badge {
-        display: inline-block;
-        padding: 0.25rem 0.75rem;
-        border-radius: 1rem;
+        padding: 0.5rem 1.5rem;
+        border-radius: 50px;
+        font-weight: 600;
         font-size: 0.875rem;
-        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
     }
-    .badge-completed {
-        background: #10b981;
-        color: white;
-    }
+
     .badge-available {
-        background: #3b82f6;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    }
+
+    .badge-coming {
+        background: linear-gradient(135deg, #a8b8d8 0%, #8b9dc3 100%);
         color: white;
     }
-    .badge-coming-soon {
-        background: #9ca3af;
+
+    /* Colab button - super eye-catching */
+    .colab-btn {
+        display: inline-block;
+        background: linear-gradient(135deg, #f9ab00 0%, #ff6b6b 100%);
         color: white;
+        padding: 1rem 2rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 30px rgba(249, 171, 0, 0.3);
+        border: none;
+    }
+
+    .colab-btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 15px 40px rgba(249, 171, 0, 0.5);
+        text-decoration: none;
+        color: white;
+    }
+
+    /* Stats boxes */
+    .stat-box {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 1.5rem;
+        border-radius: 16px;
+        color: white;
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+
+    .stat-number {
+        font-size: 2.5rem;
+        font-weight: 800;
+    }
+
+    .stat-label {
+        font-size: 0.9rem;
+        opacity: 0.9;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    /* Section headers */
+    .section-header {
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin-bottom: 1.5rem;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    /* Module sections */
+    .module-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 1.5rem 2rem;
+        border-radius: 16px;
+        margin-bottom: 1.5rem;
+        font-size: 1.8rem;
+        font-weight: 700;
+        box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+    }
+
+    /* Smooth scrolling */
+    html {
+        scroll-behavior: smooth;
+    }
+
+    /* Better spacing */
+    .spacer-small {
+        height: 2rem;
+    }
+
+    .spacer-large {
+        height: 4rem;
+    }
+
+    /* Sidebar styling */
+    section[data-testid="stSidebar"] {
+        background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+        color: white;
+    }
+
+    section[data-testid="stSidebar"] * {
+        color: white !important;
+    }
+
+    /* Link styling */
+    a {
+        color: #667eea;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+
+    a:hover {
+        color: #764ba2;
+        text-decoration: underline;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -71,87 +310,100 @@ st.markdown("""
 # Lesson data
 LESSONS = {
     "module1": {
-        "title": "🟢 Module 1: Foundations",
-        "subtitle": "Get comfortable with transformers and pre-trained models",
+        "title": "🌱 Foundations",
+        "emoji": "🟢",
+        "subtitle": "Start your journey - understand the basics",
         "duration": "Week 1",
+        "color": "#10b981",
         "lessons": [
             {
                 "id": "m1l1",
-                "title": "What is Fine-Tuning?",
+                "title": "What Even is Fine-Tuning? (Let's Talk Like Friends)",
                 "duration": "30 min",
-                "difficulty": "Beginner",
-                "description": "Learn the fundamentals of fine-tuning, when to use it, and real-world examples.",
+                "difficulty": "Super Beginner",
+                "description": "Seriously, what is this fine-tuning thing everyone talks about? I'll explain it like we're chatting over coffee. Zero jargon, promise!",
                 "colab_url": "https://colab.research.google.com/github/gouthamgo/FineTuning/blob/main/lessons/module1_foundations/01_what_is_finetuning.ipynb",
-                "status": "available"
+                "status": "available",
+                "icon": "💡"
             },
             {
                 "id": "m1l2",
-                "title": "Your First Model",
+                "title": "Your First AI Model (Yes, YOU Can Do This!)",
                 "duration": "1 hour",
                 "difficulty": "Beginner",
-                "description": "Load pre-trained models, understand tokenizers, and run your first inference.",
+                "description": "Let's actually load a real AI model and make it work! We'll take it step-by-step. You'll be amazed at how easy this is.",
                 "colab_url": "https://colab.research.google.com/github/gouthamgo/FineTuning/blob/main/lessons/module1_foundations/02_your_first_model.ipynb",
-                "status": "available"
+                "status": "available",
+                "icon": "🤖"
             },
             {
                 "id": "m1l3",
-                "title": "Understanding Data",
+                "title": "Understanding Your Data (The Secret Sauce)",
                 "duration": "1 hour",
                 "difficulty": "Beginner",
-                "description": "Learn about dataset formats, data preparation, and quality checks.",
+                "description": "Data is like ingredients for cooking. Bad ingredients = bad food. I'll show you how to prep your data like a chef!",
                 "colab_url": "",
-                "status": "coming_soon"
+                "status": "coming_soon",
+                "icon": "📊"
             }
         ]
     },
     "module2": {
-        "title": "🟡 Module 2: Your First Fine-Tuning",
-        "subtitle": "Actually train your first model!",
+        "title": "🚀 Your First Fine-Tuning",
+        "emoji": "🟡",
+        "subtitle": "This is where the magic happens!",
         "duration": "Week 2",
+        "color": "#f59e0b",
         "lessons": [
             {
                 "id": "m2l1",
-                "title": "First Fine-Tuning (Sentiment Analysis)",
+                "title": "ACTUALLY Fine-Tune Your First Model! 🎉",
                 "duration": "2 hours",
                 "difficulty": "Beginner",
-                "description": "Fine-tune a sentiment classifier from scratch on IMDB reviews. Watch your model learn!",
+                "description": "This is THE lesson! You'll train your own AI model from scratch. Watch it learn in real-time. It's like magic, but it's REAL!",
                 "colab_url": "https://colab.research.google.com/github/gouthamgo/FineTuning/blob/main/lessons/module2_first_training/01_first_finetuning.ipynb",
                 "status": "available",
-                "featured": True
+                "featured": True,
+                "icon": "⚡"
             },
             {
                 "id": "m2l2",
-                "title": "Evaluating Your Model",
+                "title": "Is Your Model Actually Good? (Let's Find Out)",
                 "duration": "1 hour",
                 "difficulty": "Beginner",
-                "description": "Deep dive into metrics, confusion matrices, and error analysis.",
+                "description": "Your model is trained! But... is it good? I'll show you how to test it properly (and what all those numbers mean).",
                 "colab_url": "",
-                "status": "coming_soon"
+                "status": "coming_soon",
+                "icon": "📈"
             },
             {
                 "id": "m2l3",
-                "title": "Saving & Sharing Models",
+                "title": "Save & Share Your Model (Show Off Time!)",
                 "duration": "1 hour",
                 "difficulty": "Beginner",
-                "description": "Save your model and share it on HuggingFace Hub.",
+                "description": "Let's save your model and put it online so others can use it. Add this to your portfolio!",
                 "colab_url": "",
-                "status": "coming_soon"
+                "status": "coming_soon",
+                "icon": "💾"
             }
         ]
     },
     "module3": {
-        "title": "🟠 Module 3: Going Deeper",
-        "subtitle": "Master hyperparameters and optimization",
+        "title": "🧠 Level Up",
+        "emoji": "🟠",
+        "subtitle": "Go from good to GREAT",
         "duration": "Week 3",
+        "color": "#f97316",
         "lessons": [
             {
                 "id": "m3l1",
-                "title": "Hyperparameters Demystified",
+                "title": "Hyperparameters Decoded (Not as Scary as It Sounds)",
                 "duration": "1.5 hours",
                 "difficulty": "Intermediate",
-                "description": "Understand learning rate, batch size, epochs, and more.",
+                "description": "Those confusing settings? I'll explain them in plain English. You'll become a tuning wizard!",
                 "colab_url": "",
-                "status": "coming_soon"
+                "status": "coming_soon",
+                "icon": "🎛️"
             }
         ]
     }
@@ -159,342 +411,318 @@ LESSONS = {
 
 # Sidebar
 with st.sidebar:
-    st.markdown("### 🎓 Navigation")
+    st.markdown("<div style='text-align: center; padding: 1rem;'>", unsafe_allow_html=True)
+    st.markdown("# 🚀 Academy")
+    st.markdown("</div>", unsafe_allow_html=True)
 
     selected = option_menu(
         menu_title=None,
-        options=["Home", "Lessons", "About", "Deploy"],
-        icons=["house", "book", "info-circle", "cloud-upload"],
+        options=["🏠 Home", "📚 Lessons", "ℹ️ About", "☁️ Deploy"],
+        icons=["house-fill", "book-fill", "info-circle-fill", "cloud-upload-fill"],
         default_index=0,
+        styles={
+            "container": {"padding": "0!important", "background-color": "transparent"},
+            "icon": {"color": "white", "font-size": "1.2rem"},
+            "nav-link": {
+                "font-size": "1.1rem",
+                "text-align": "left",
+                "margin": "0.5rem 0",
+                "padding": "1rem",
+                "border-radius": "10px",
+                "color": "white",
+                "background-color": "rgba(255, 255, 255, 0.1)",
+            },
+            "nav-link-selected": {
+                "background": "rgba(255, 255, 255, 0.3)",
+                "font-weight": "600",
+            },
+        }
     )
 
-    st.markdown("---")
-    st.markdown("### 📊 Quick Stats")
+    st.markdown("<div class='spacer-small'></div>", unsafe_allow_html=True)
+
+    # Stats
     total_lessons = sum(len(m["lessons"]) for m in LESSONS.values())
     available_lessons = sum(1 for m in LESSONS.values() for l in m["lessons"] if l["status"] == "available")
 
-    st.metric("Available Lessons", f"{available_lessons}/{total_lessons}")
-    st.metric("Modules", len(LESSONS))
+    st.markdown(f"""
+    <div class='stat-box'>
+        <div class='stat-number'>{available_lessons}/{total_lessons}</div>
+        <div class='stat-label'>Ready to Learn</div>
+    </div>
+    """, unsafe_allow_html=True)
 
-    st.markdown("---")
+    st.markdown(f"""
+    <div class='stat-box'>
+        <div class='stat-number'>{len(LESSONS)}</div>
+        <div class='stat-label'>Learning Modules</div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown("<div class='spacer-small'></div>", unsafe_allow_html=True)
+
     st.markdown("### 🔗 Quick Links")
-    st.markdown("- [GitHub Repo](https://github.com/gouthamgo/FineTuning)")
-    st.markdown("- [HuggingFace Docs](https://huggingface.co/docs)")
+    st.markdown("- [GitHub](https://github.com/gouthamgo/FineTuning)")
+    st.markdown("- [HuggingFace](https://huggingface.co/docs)")
     st.markdown("- [Google Colab](https://colab.research.google.com/)")
 
-# Main content based on selection
-if selected == "Home":
-    st.markdown('<div class="main-header">🚀 Fine-Tuning Learning Platform</div>', unsafe_allow_html=True)
-    st.markdown("<h3 style='text-align: center;'>Learn to Fine-Tune Transformer Models from Scratch</h3>", unsafe_allow_html=True)
-    st.markdown("<p style='text-align: center; font-size: 1.2rem;'>Interactive • Free • Open Source • No Setup Required</p>", unsafe_allow_html=True)
+# Main content
+if selected == "🏠 Home":
+    st.markdown('<div class="hero-title">Fine-Tuning Academy</div>', unsafe_allow_html=True)
+    st.markdown('<div class="hero-subtitle">Learn AI Like a Friend is Teaching You</div>', unsafe_allow_html=True)
+    st.markdown('<div class="hero-tags">Free • Interactive • Actually Fun • Zero BS</div>', unsafe_allow_html=True)
 
-    st.markdown("---")
+    st.markdown("<div class='spacer-large'></div>", unsafe_allow_html=True)
 
-    # Hero section
+    # Feature cards
     col1, col2, col3 = st.columns(3)
 
     with col1:
-        st.markdown("### 📓 Interactive")
-        st.write("Learn by doing with hands-on Jupyter notebooks in Google Colab")
+        st.markdown("""
+        <div class='feature-card'>
+            <div class='feature-icon'>🎓</div>
+            <div class='feature-title'>Learn by Doing</div>
+            <div class='feature-desc'>Hands-on lessons in Google Colab. Click, code, learn. No boring theory!</div>
+        </div>
+        """, unsafe_allow_html=True)
 
     with col2:
-        st.markdown("### 💰 100% Free")
-        st.write("Free GPU from Google Colab. No credit card required.")
+        st.markdown("""
+        <div class='feature-card' style='background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);'>
+            <div class='feature-icon'>💰</div>
+            <div class='feature-title'>100% Free</div>
+            <div class='feature-desc'>Free GPU from Google. Free courses. Free everything. Seriously.</div>
+        </div>
+        """, unsafe_allow_html=True)
 
     with col3:
-        st.markdown("### 🎯 Beginner-Friendly")
-        st.write("From zero to fine-tuning in 6 weeks. No PhD needed!")
+        st.markdown("""
+        <div class='feature-card' style='background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);'>
+            <div class='feature-icon'>🤝</div>
+            <div class='feature-title'>Friend Mode</div>
+            <div class='feature-desc'>No jargon. No PhD needed. Just me explaining like we're friends.</div>
+        </div>
+        """, unsafe_allow_html=True)
 
-    st.markdown("---")
+    st.markdown("<div class='spacer-large'></div>", unsafe_allow_html=True)
 
-    # Quick Start
-    st.markdown("## 🚀 Quick Start")
+    # Quick start
+    st.markdown("<div class='section-header'>🚀 Start in 30 Seconds</div>", unsafe_allow_html=True)
 
     st.markdown("""
-    ### How It Works:
+    <div style='background: white; padding: 2rem; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);'>
+        <h3 style='color: #667eea; margin-bottom: 1.5rem;'>Here's how this works:</h3>
+        <ol style='font-size: 1.2rem; line-height: 2; color: #4a5568;'>
+            <li><strong>Pick a lesson</strong> from below (start with the first one!)</li>
+            <li><strong>Click the orange button</strong> - opens in Google Colab</li>
+            <li><strong>Run the code cells</strong> - just click play ▶️</li>
+            <li><strong>Learn by doing</strong> - you'll train real AI models!</li>
+        </ol>
+        <p style='font-size: 1.1rem; color: #718096; margin-top: 1.5rem;'>
+            <strong>No installation. No setup. No credit card.</strong> Just click and learn!
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
 
-    1. **Choose a lesson** from the Lessons tab
-    2. **Click "Open in Colab"** - Opens in Google Colab (free GPU!)
-    3. **Run the notebook** - Learn by actually coding
-    4. **Build real projects** - Create portfolio-worthy applications
-
-    **That's it!** No installation, no setup, no cost.
-    """)
+    st.markdown("<div class='spacer-large'></div>", unsafe_allow_html=True)
 
     # Featured lesson
-    st.markdown("---")
-    st.markdown("## ⭐ Featured Lesson")
+    st.markdown("<div class='section-header'>⭐ Start Here!</div>", unsafe_allow_html=True)
 
-    featured = None
     for module in LESSONS.values():
         for lesson in module["lessons"]:
             if lesson.get("featured"):
-                featured = lesson
-                break
+                st.markdown(f"""
+                <div class='lesson-card' style='border: 3px solid #667eea;'>
+                    <div style='display: flex; justify-content: space-between; align-items: start;'>
+                        <div style='flex: 1;'>
+                            <span class='badge badge-available'>⭐ MOST POPULAR</span>
+                            <h2 style='color: #667eea; margin: 1rem 0;'>{lesson['icon']} {lesson['title']}</h2>
+                            <p style='font-size: 1.2rem; color: #4a5568; line-height: 1.8; margin-bottom: 1.5rem;'>
+                                {lesson['description']}
+                            </p>
+                            <div style='color: #718096; margin-bottom: 1.5rem;'>
+                                ⏱️ {lesson['duration']} • 📊 {lesson['difficulty']}
+                            </div>
+                            <a href='{lesson['colab_url']}' target='_blank' class='colab-btn'>
+                                🔥 Open in Colab (Free GPU!)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                """, unsafe_allow_html=True)
 
-    if featured:
-        col1, col2 = st.columns([2, 1])
+elif selected == "📚 Lessons":
+    st.markdown('<div class="hero-title" style="font-size: 3rem;">📚 All Lessons</div>', unsafe_allow_html=True)
+    st.markdown('<div class="hero-subtitle" style="font-size: 1.2rem;">Your learning path from zero to hero</div>', unsafe_allow_html=True)
 
-        with col1:
-            st.markdown(f"### {featured['title']}")
-            st.write(featured['description'])
-            st.markdown(f"**Duration:** {featured['duration']} | **Difficulty:** {featured['difficulty']}")
-
-        with col2:
-            st.markdown("### ")
-            st.markdown("### ")
-            st.markdown(f"[<img src='https://colab.research.google.com/assets/colab-badge.svg'>]({featured['colab_url']})", unsafe_allow_html=True)
-
-    # Learning path overview
-    st.markdown("---")
-    st.markdown("## 📚 Learning Path")
+    st.markdown("<div class='spacer-large'></div>", unsafe_allow_html=True)
 
     for module_key, module in LESSONS.items():
-        with st.expander(f"{module['title']} ({module['duration']})", expanded=(module_key == "module1")):
-            st.markdown(f"*{module['subtitle']}*")
-            st.write(f"**{len(module['lessons'])} lessons**")
-
-elif selected == "Lessons":
-    st.markdown('<div class="main-header">📚 All Lessons</div>', unsafe_allow_html=True)
-
-    # Filter
-    col1, col2 = st.columns([3, 1])
-    with col1:
-        st.markdown("Browse all lessons organized by module")
-    with col2:
-        filter_status = st.selectbox("Filter", ["All", "Available", "Coming Soon"])
-
-    st.markdown("---")
-
-    # Display lessons by module
-    for module_key, module in LESSONS.items():
-        st.markdown(f"## {module['title']}")
-        st.markdown(f"**{module['subtitle']}** • {module['duration']}")
-        st.markdown("")
+        st.markdown(f"""
+        <div class='module-header'>
+            {module['emoji']} {module['title']}
+            <div style='font-size: 1rem; opacity: 0.9; margin-top: 0.5rem;'>{module['subtitle']} • {module['duration']}</div>
+        </div>
+        """, unsafe_allow_html=True)
 
         for lesson in module["lessons"]:
-            # Apply filter
-            if filter_status == "Available" and lesson["status"] != "available":
-                continue
-            if filter_status == "Coming Soon" and lesson["status"] != "coming_soon":
-                continue
+            status_badge = "badge-available" if lesson["status"] == "available" else "badge-coming"
+            status_text = "✅ Ready to Learn" if lesson["status"] == "available" else "🔜 Coming Soon"
 
-            # Lesson card
-            col1, col2 = st.columns([3, 1])
+            st.markdown(f"""
+            <div class='lesson-card'>
+                <div style='display: flex; justify-content: space-between; align-items: start; flex-wrap: wrap;'>
+                    <div style='flex: 1; min-width: 300px;'>
+                        <span class='badge {status_badge}'>{status_text}</span>
+                        <h3 style='color: #2d3748; margin: 1rem 0; font-size: 1.5rem;'>
+                            {lesson['icon']} {lesson['title']}
+                        </h3>
+                        <p style='font-size: 1.1rem; color: #4a5568; line-height: 1.8; margin-bottom: 1rem;'>
+                            {lesson['description']}
+                        </p>
+                        <div style='color: #718096;'>
+                            ⏱️ {lesson['duration']} • 📊 {lesson['difficulty']}
+                        </div>
+                    </div>
+                    <div style='margin-top: 1rem;'>
+            """, unsafe_allow_html=True)
 
-            with col1:
-                # Status badge
-                if lesson["status"] == "available":
-                    badge_class = "badge-available"
-                    badge_text = "✅ Available"
-                else:
-                    badge_class = "badge-coming-soon"
-                    badge_text = "🔜 Coming Soon"
+            if lesson["status"] == "available" and lesson["colab_url"]:
+                st.markdown(f"""
+                        <a href='{lesson['colab_url']}' target='_blank' class='colab-btn'>
+                            🚀 Start Learning
+                        </a>
+                """, unsafe_allow_html=True)
+            else:
+                st.markdown("""
+                        <div style='padding: 1rem 2rem; background: #e2e8f0; border-radius: 50px; color: #718096; font-weight: 600;'>
+                            Coming Soon!
+                        </div>
+                """, unsafe_allow_html=True)
 
-                st.markdown(f'<span class="progress-badge {badge_class}">{badge_text}</span>', unsafe_allow_html=True)
+            st.markdown("""
+                    </div>
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
 
-                st.markdown(f"### {lesson['title']}")
-                st.write(lesson['description'])
-                st.markdown(f"⏱️ {lesson['duration']} | 📊 {lesson['difficulty']}")
+        st.markdown("<div class='spacer-small'></div>", unsafe_allow_html=True)
 
-            with col2:
-                st.markdown("###")
-                if lesson["status"] == "available" and lesson["colab_url"]:
-                    st.markdown(f"""
-                    <a href="{lesson['colab_url']}" target="_blank">
-                        <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
-                    </a>
-                    """, unsafe_allow_html=True)
-                else:
-                    st.info("Coming Soon!")
+elif selected == "ℹ️ About":
+    st.markdown('<div class="hero-title" style="font-size: 3rem;">ℹ️ About</div>', unsafe_allow_html=True)
+    st.markdown('<div class="hero-subtitle">Why this exists & how it works</div>', unsafe_allow_html=True)
 
-            st.markdown("---")
-
-elif selected == "About":
-    st.markdown('<div class="main-header">ℹ️ About This Platform</div>', unsafe_allow_html=True)
-
-    st.markdown("""
-    ## What is This?
-
-    This is a **completely free, open-source learning platform** for anyone who wants to learn fine-tuning of transformer models.
-
-    ### Why We Built This
-
-    Most fine-tuning tutorials are either:
-    - ❌ Too theoretical (no actual code)
-    - ❌ Too advanced (assumes you're an expert)
-    - ❌ Incomplete (leaves you hanging)
-    - ❌ Expensive (requires paid services)
-
-    We wanted something different:
-    - ✅ **Hands-on** - Write real code, train real models
-    - ✅ **Complete** - From zero to production
-    - ✅ **Free** - No hidden costs
-    - ✅ **Beginner-friendly** - Clear explanations
-
-    ### The Technology Stack
-
-    Everything we use is free:
-
-    - **Google Colab** - Free GPU for training (worth $100s/month!)
-    - **HuggingFace** - Pre-trained models and datasets
-    - **GitHub** - Host all notebooks and code
-    - **Streamlit Cloud** - This dashboard (deployed for free)
-
-    **Total cost: $0** 💰
-
-    ### Learning Philosophy
-
-    1. **Learn by Doing** - Every lesson has runnable code
-    2. **Progressive Complexity** - Start simple, build up
-    3. **Real Projects** - Build portfolio-worthy work
-    4. **Community-Driven** - Open source, community contributions welcome
-
-    ### Curriculum Overview
-
-    **Module 1:** Foundations (Week 1)
-    - Understand what fine-tuning is
-    - Load and use pre-trained models
-    - Prepare data for training
-
-    **Module 2:** Your First Fine-Tuning (Week 2)
-    - Actually fine-tune a sentiment classifier
-    - Evaluate model performance
-    - Save and share your model
-
-    **Module 3:** Going Deeper (Week 3)
-    - Master hyperparameters
-    - Advanced optimization (LoRA, quantization)
-    - Troubleshoot common issues
-
-    **Module 4:** Real-World Projects (Week 4-5)
-    - Customer support classifier
-    - Named entity recognition
-    - Custom chatbot
-    - Document analyzer
-
-    **Module 5:** Production (Week 6)
-    - Model optimization
-    - Deployment options
-    - Monitoring and iteration
-
-    ### Contributing
-
-    This is an open-source project! We welcome:
-    - 🐛 Bug reports
-    - 💡 Feature suggestions
-    - 📝 New lessons or improvements
-    - 🌟 Stars on GitHub
-
-    [Visit our GitHub repo](https://github.com/gouthamgo/FineTuning) to contribute!
-
-    ### Credits
-
-    Built with ❤️ using:
-    - [HuggingFace Transformers](https://huggingface.co/docs/transformers/)
-    - [Google Colab](https://colab.research.google.com/)
-    - [Streamlit](https://streamlit.io/)
-    - [PyTorch](https://pytorch.org/)
-
-    ---
-
-    **Made for learners, by learners. Always free. Always open source.**
-    """)
-
-elif selected == "Deploy":
-    st.markdown('<div class="main-header">☁️ Deploy Your Own</div>', unsafe_allow_html=True)
+    st.markdown("<div class='spacer-large'></div>", unsafe_allow_html=True)
 
     st.markdown("""
-    ## Want to run this dashboard yourself?
+    <div style='background: white; padding: 2.5rem; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);'>
+        <h2 style='color: #667eea; margin-bottom: 1.5rem;'>The Real Talk</h2>
+        <p style='font-size: 1.2rem; line-height: 2; color: #4a5568;'>
+            Look, most AI tutorials suck. They're either:<br><br>
+            ❌ Too technical ("assume you have a PhD")<br>
+            ❌ Too expensive ("$999 for our course!")<br>
+            ❌ Too boring ("here's 40 hours of lectures")<br>
+            ❌ Never finish ("part 2 coming never")<br>
+            <br>
+            So I built this. It's:<br><br>
+            ✅ Explained like I'm talking to a friend<br>
+            ✅ 100% free (seriously, $0)<br>
+            ✅ Actually fun to learn<br>
+            ✅ Complete curriculum<br>
+            ✅ You write REAL code<br>
+            <br>
+            <strong>This is the course I wish I had when I started.</strong>
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
 
-    You can deploy your own version of this platform for **FREE** on Streamlit Cloud!
+    st.markdown("<div class='spacer-large'></div>", unsafe_allow_html=True)
 
-    ### Step-by-Step Deployment
+    col1, col2 = st.columns(2)
 
-    #### 1. Fork the Repository
+    with col1:
+        st.markdown("""
+        <div style='background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 2rem; border-radius: 20px; color: white; height: 100%;'>
+            <h3 style='margin-bottom: 1rem;'>🎯 What You'll Learn</h3>
+            <ul style='font-size: 1.1rem; line-height: 2;'>
+                <li>How AI models actually work</li>
+                <li>Train your own models</li>
+                <li>Build real projects</li>
+                <li>Deploy to production</li>
+                <li>Add to your portfolio</li>
+            </ul>
+        </div>
+        """, unsafe_allow_html=True)
 
-    ```bash
-    # Go to: https://github.com/gouthamgo/FineTuning
-    # Click "Fork" in the top right
-    ```
+    with col2:
+        st.markdown("""
+        <div style='background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); padding: 2rem; border-radius: 20px; color: white; height: 100%;'>
+            <h3 style='margin-bottom: 1rem;'>💰 The Tech Stack (All Free!)</h3>
+            <ul style='font-size: 1.1rem; line-height: 2;'>
+                <li>Google Colab (free GPU!)</li>
+                <li>HuggingFace (models & data)</li>
+                <li>GitHub (hosting)</li>
+                <li>Streamlit (this dashboard)</li>
+            </ul>
+            <p style='margin-top: 1rem; font-weight: 600;'>Total cost: $0</p>
+        </div>
+        """, unsafe_allow_html=True)
 
-    #### 2. Sign Up for Streamlit Cloud
+elif selected == "☁️ Deploy":
+    st.markdown('<div class="hero-title" style="font-size: 3rem;">☁️ Deploy</div>', unsafe_allow_html=True)
+    st.markdown('<div class="hero-subtitle">Run your own version for free</div>', unsafe_allow_html=True)
 
-    - Go to [share.streamlit.io](https://share.streamlit.io)
-    - Sign in with your GitHub account (free)
+    st.markdown("<div class='spacer-large'></div>", unsafe_allow_html=True)
 
-    #### 3. Deploy the App
+    st.markdown("""
+    <div style='background: white; padding: 2.5rem; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);'>
+        <h2 style='color: #667eea; margin-bottom: 1.5rem;'>Deploy in 5 Minutes (Free!)</h2>
 
-    1. Click "New app"
-    2. Select your forked repository
-    3. Set:
-       - **Branch:** `main`
-       - **Main file path:** `webapp/app.py`
-    4. Click "Deploy"!
+        <div style='background: #f7fafc; padding: 2rem; border-radius: 16px; margin: 1.5rem 0;'>
+            <h3 style='color: #2d3748; margin-bottom: 1rem;'>Step 1: Fork the Repo</h3>
+            <p style='font-size: 1.1rem; color: #4a5568; line-height: 1.8;'>
+                Go to <a href='https://github.com/gouthamgo/FineTuning' target='_blank'>github.com/gouthamgo/FineTuning</a><br>
+                Click "Fork" button → You now have your own copy!
+            </p>
+        </div>
 
-    **That's it!** Your dashboard will be live in ~2 minutes.
+        <div style='background: #f7fafc; padding: 2rem; border-radius: 16px; margin: 1.5rem 0;'>
+            <h3 style='color: #2d3748; margin-bottom: 1rem;'>Step 2: Deploy to Streamlit</h3>
+            <p style='font-size: 1.1rem; color: #4a5568; line-height: 1.8;'>
+                Go to <a href='https://share.streamlit.io' target='_blank'>share.streamlit.io</a><br>
+                Sign in with GitHub<br>
+                Click "New app"<br>
+                Select your forked repo<br>
+                File: <code>webapp/app.py</code><br>
+                Click "Deploy"!
+            </p>
+        </div>
 
-    #### 4. Share Your Link
-
-    You'll get a URL like: `https://yourname-finetuning.streamlit.app`
-
-    Share it with:
-    - Your students
-    - Your team
-    - The world!
-
-    ### Free Tier Limits
-
-    Streamlit Cloud free tier includes:
-    - ✅ Unlimited public apps
-    - ✅ 1 GB RAM per app
-    - ✅ Custom domain support
-    - ✅ Community support
-
-    **Perfect for this dashboard!**
-
-    ### Custom Domain (Optional)
-
-    Want to use your own domain? Streamlit Cloud supports custom domains on the free tier!
-
-    Just add a CNAME record pointing to your Streamlit app.
-
-    ### Need Help?
-
-    - [Streamlit Cloud Docs](https://docs.streamlit.io/streamlit-community-cloud)
-    - [GitHub Issues](https://github.com/gouthamgo/FineTuning/issues)
-
-    ---
-
-    ## Local Development
-
-    Want to run this locally?
-
-    ```bash
-    # Clone the repo
-    git clone https://github.com/gouthamgo/FineTuning.git
-    cd FineTuning
-
-    # Install dependencies
-    pip install streamlit streamlit-option-menu
-
-    # Run the dashboard
-    streamlit run webapp/app.py
-    ```
-
-    Opens at `http://localhost:8501`
-    """)
+        <div style='background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 2rem; border-radius: 16px; margin: 1.5rem 0; color: white;'>
+            <h3 style='margin-bottom: 1rem;'>🎉 That's It!</h3>
+            <p style='font-size: 1.2rem; line-height: 1.8;'>
+                You'll get a URL like: yourname-finetuning.streamlit.app<br><br>
+                Share it with friends, students, or the world!
+            </p>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
 
 # Footer
-st.markdown("---")
+st.markdown("<div class='spacer-large'></div>", unsafe_allow_html=True)
 st.markdown("""
-<div style='text-align: center; padding: 2rem;'>
-    <p>Built with ❤️ for the ML community</p>
-    <p>
+<div style='text-align: center; padding: 2rem; background: rgba(255, 255, 255, 0.5); border-radius: 20px; margin-top: 3rem;'>
+    <p style='font-size: 1.1rem; color: #4a5568; margin-bottom: 1rem;'>
+        Built with ❤️ for people who want to actually learn AI
+    </p>
+    <p style='color: #718096;'>
         <a href='https://github.com/gouthamgo/FineTuning' target='_blank'>GitHub</a> •
-        <a href='https://huggingface.co/docs/transformers' target='_blank'>HuggingFace</a> •
+        <a href='https://huggingface.co' target='_blank'>HuggingFace</a> •
         <a href='https://colab.research.google.com' target='_blank'>Google Colab</a>
     </p>
-    <p style='color: #666; font-size: 0.9rem;'>100% Free • Open Source • No Setup Required</p>
+    <p style='color: #a0aec0; margin-top: 1rem; font-size: 0.9rem;'>
+        100% Free • Forever • No BS
+    </p>
 </div>
 """, unsafe_allow_html=True)
