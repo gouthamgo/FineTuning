@@ -217,103 +217,151 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-gray-50">
+    <main className="min-h-screen">
       {/* Header */}
-      <div className="border-b border-gray-200 bg-white">
-        <div className="max-w-5xl mx-auto px-6 py-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">
-            Fine-Tuning Academy
-          </h1>
-          <p className="text-xl text-gray-600">
-            Learn AI like a friend is teaching you
-          </p>
+      <div className="border-b border-indigo-100 bg-white/50 backdrop-blur-md sticky top-0 z-10">
+        <div className="max-w-6xl mx-auto px-6 py-6">
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                Fine-Tuning Academy
+              </h1>
+              <p className="text-gray-600 mt-1">Learn AI like a friend is teaching you</p>
+            </div>
+            <div className="hidden md:flex items-center gap-2 text-sm">
+              <span className="px-3 py-1 rounded-full bg-indigo-50 text-indigo-600 font-medium">16 Lessons</span>
+              <span className="px-3 py-1 rounded-full bg-emerald-50 text-emerald-600 font-medium">100% Free</span>
+            </div>
+          </div>
         </div>
       </div>
 
       {/* Main Content */}
-      <div className="max-w-5xl mx-auto px-6 py-12">
-        {/* Quick Intro */}
+      <div className="max-w-6xl mx-auto px-6 py-12">
+        {/* Hero Section */}
         <div className="mb-16">
-          <div className="bg-white rounded-lg border border-gray-200 p-8">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">
-              How it works
-            </h2>
-            <div className="space-y-3 text-gray-600">
-              <p>1. Pick a lesson below (start with the first one)</p>
-              <p>2. Click to open in Google Colab (free GPU included)</p>
-              <p>3. Run the code cells and learn by doing</p>
-              <p>4. Build real projects for your portfolio</p>
-            </div>
-            <div className="mt-6 pt-6 border-t border-gray-100">
-              <p className="text-sm text-gray-500">
-                No installation. No setup. No credit card. Just learning.
-              </p>
+          <div className="intro-card">
+            <div className="flex items-start gap-6">
+              <div className="flex-1">
+                <h2 className="text-2xl font-bold text-gray-900 mb-4">
+                  How it works
+                </h2>
+                <div className="space-y-3 text-gray-600">
+                  <div className="flex items-center gap-3">
+                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-semibold">1</div>
+                    <p>Pick a lesson below (start with the first one)</p>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-semibold">2</div>
+                    <p>Click to open in Google Colab (free GPU included)</p>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-semibold">3</div>
+                    <p>Run the code cells and learn by doing</p>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-semibold">4</div>
+                    <p>Build real projects for your portfolio</p>
+                  </div>
+                </div>
+              </div>
+              <div className="hidden lg:block">
+                <div className="bg-gradient-to-br from-indigo-500 to-purple-500 text-white p-8 rounded-2xl">
+                  <div className="text-5xl font-bold mb-2">16</div>
+                  <div className="text-indigo-100">Lessons Ready</div>
+                  <div className="mt-4 pt-4 border-t border-white/20">
+                    <div className="text-sm text-indigo-100">No installation needed</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-3 gap-6 mb-16">
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <div className="text-3xl font-bold text-gray-900 mb-1">16</div>
-            <div className="text-sm text-gray-600">Lessons</div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+          <div className="stat-card">
+            <div className="flex items-center gap-4">
+              <div className="text-4xl">📚</div>
+              <div>
+                <div className="text-3xl font-bold text-gray-900">16</div>
+                <div className="text-sm text-gray-600">Complete Lessons</div>
+              </div>
+            </div>
           </div>
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <div className="text-3xl font-bold text-gray-900 mb-1">6</div>
-            <div className="text-sm text-gray-600">Modules</div>
+          <div className="stat-card">
+            <div className="flex items-center gap-4">
+              <div className="text-4xl">🎯</div>
+              <div>
+                <div className="text-3xl font-bold text-gray-900">6</div>
+                <div className="text-sm text-gray-600">Learning Modules</div>
+              </div>
+            </div>
           </div>
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <div className="text-3xl font-bold text-gray-900 mb-1">100%</div>
-            <div className="text-sm text-gray-600">Free</div>
+          <div className="stat-card">
+            <div className="flex items-center gap-4">
+              <div className="text-4xl">💰</div>
+              <div>
+                <div className="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">100%</div>
+                <div className="text-sm text-gray-600">Free Forever</div>
+              </div>
+            </div>
           </div>
         </div>
 
         {/* Lessons by Module */}
-        <div className="space-y-12">
+        <div className="space-y-16">
           {Object.values(lessons).map((module, idx) => (
             <div key={idx}>
               {/* Module Header */}
-              <div className="mb-6">
+              <div className="mb-8">
                 <div className="flex items-center gap-3 mb-2">
-                  <span className="text-2xl">{module.emoji}</span>
-                  <h2 className="text-2xl font-semibold text-gray-900">
-                    {module.title.replace(/^[^\s]+\s/, '')}
-                  </h2>
+                  <span className="text-3xl">{module.emoji}</span>
+                  <div>
+                    <h2 className="text-2xl font-bold text-gray-900">
+                      {module.title.replace(/^[^\s]+\s/, '')}
+                    </h2>
+                    <p className="text-gray-600">{module.subtitle}</p>
+                  </div>
                 </div>
-                <p className="text-gray-600 ml-11">{module.subtitle}</p>
               </div>
 
               {/* Lessons */}
-              <div className="space-y-4">
+              <div className="grid gap-5">
                 {module.lessons.map(lesson => (
-                  <div key={lesson.id} className="lesson-card">
-                    <div className="flex items-start justify-between gap-6">
+                  <div key={lesson.id} className="lesson-card group">
+                    <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
                       <div className="flex-1">
                         {/* Badges */}
                         <div className="flex items-center gap-2 mb-3">
                           <span className={`badge ${lesson.status === 'available' ? 'badge-available' : 'badge-coming'}`}>
-                            {lesson.status === 'available' ? 'Available' : 'Coming Soon'}
+                            {lesson.status === 'available' ? '✓ Available' : 'Coming Soon'}
                           </span>
                           {lesson.featured && (
                             <span className="badge badge-featured">
-                              Featured
+                              ⭐ Featured
                             </span>
                           )}
                         </div>
 
                         {/* Title */}
-                        <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                        <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-indigo-600 transition-colors">
                           {lesson.icon} {lesson.title}
                         </h3>
 
                         {/* Description */}
-                        <p className="text-gray-600 text-sm mb-4 leading-relaxed">
+                        <p className="text-gray-600 mb-4 leading-relaxed">
                           {lesson.description}
                         </p>
 
                         {/* Meta */}
-                        <div className="flex items-center gap-4 text-xs text-gray-500">
-                          <span>⏱ {lesson.duration}</span>
+                        <div className="flex items-center gap-4 text-sm text-gray-500">
+                          <span className="flex items-center gap-1">
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            {lesson.duration}
+                          </span>
                           <span>•</span>
                           <span>{lesson.difficulty}</span>
                         </div>
@@ -331,7 +379,7 @@ export default function Home() {
                             Open in Colab →
                           </a>
                         ) : (
-                          <div className="px-4 py-2 rounded-lg bg-gray-100 text-gray-400 text-sm font-medium">
+                          <div className="px-5 py-2.5 rounded-lg bg-gray-100 text-gray-400 text-sm font-semibold">
                             Coming Soon
                           </div>
                         )}
@@ -345,35 +393,33 @@ export default function Home() {
         </div>
 
         {/* Footer */}
-        <div className="mt-20 pt-12 border-t border-gray-200">
+        <div className="mt-24 pt-12 border-t border-gray-200">
           <div className="text-center">
-            <p className="text-gray-600 mb-4">
-              Built for people who want to actually learn AI
+            <p className="text-gray-600 mb-6">
+              Built with ❤️ for people who want to actually learn AI
             </p>
-            <div className="flex items-center justify-center gap-6 text-sm">
+            <div className="flex items-center justify-center gap-8 text-sm">
               <a
                 href="https://github.com/gouthamgo/FineTuning"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-600 hover:text-gray-900 transition-colors"
+                className="text-gray-600 hover:text-indigo-600 transition-colors font-medium"
               >
                 GitHub
               </a>
-              <span className="text-gray-300">•</span>
               <a
                 href="https://huggingface.co"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-600 hover:text-gray-900 transition-colors"
+                className="text-gray-600 hover:text-indigo-600 transition-colors font-medium"
               >
                 HuggingFace
               </a>
-              <span className="text-gray-300">•</span>
               <a
                 href="https://colab.research.google.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-600 hover:text-gray-900 transition-colors"
+                className="text-gray-600 hover:text-indigo-600 transition-colors font-medium"
               >
                 Google Colab
               </a>
