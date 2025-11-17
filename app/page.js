@@ -91,8 +91,8 @@ export default function Home() {
           duration: "1.5 hours",
           difficulty: "Advanced",
           description: "Train models with BILLIONS of parameters using these clever tricks. Same results, way less memory!",
-          colabUrl: "",
-          status: "coming_soon",
+          colabUrl: "https://colab.research.google.com/github/gouthamgo/FineTuning/blob/main/lessons/module3_advanced/01_lora_qlora.ipynb",
+          status: "available",
           icon: "🚀"
         },
         {
@@ -101,8 +101,8 @@ export default function Home() {
           duration: "1.5 hours",
           difficulty: "Advanced",
           description: "Train your model to do multiple tasks at once. Sentiment analysis AND summarization? Easy!",
-          colabUrl: "",
-          status: "coming_soon",
+          colabUrl: "https://colab.research.google.com/github/gouthamgo/FineTuning/blob/main/lessons/module3_advanced/02_multitask_learning.ipynb",
+          status: "available",
           icon: "🎨"
         },
         {
