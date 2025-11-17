@@ -114,6 +114,16 @@ export default function Home() {
           colabUrl: "https://colab.research.google.com/github/gouthamgo/FineTuning/blob/main/lessons/module3_advanced/03_custom_loss_functions.ipynb",
           status: "available",
           icon: "🎲"
+        },
+        {
+          id: "m3l4",
+          title: "Performance Optimization (Make Models 10x Faster!)",
+          duration: "2 hours",
+          difficulty: "Advanced",
+          description: "Master quantization, distillation, pruning, ONNX Runtime, and batching to make models 10x faster and 95% cheaper. Essential production skills!",
+          colabUrl: "https://colab.research.google.com/github/gouthamgo/FineTuning/blob/main/lessons/module3_advanced/04_performance_optimization.ipynb",
+          status: "available",
+          icon: "⚡"
         }
       ]
     },
@@ -136,12 +146,12 @@ export default function Home() {
         },
         {
           id: "m4l2",
-          title: "Project: Create a Code Review Assistant",
+          title: "Project: Code Review Assistant",
           duration: "3 hours",
           difficulty: "Advanced",
-          description: "Train a model to review code, catch bugs, and suggest improvements. Like having a senior dev on your team!",
-          colabUrl: "",
-          status: "coming_soon",
+          description: "Fine-tune CodeT5 to review code, detect bugs, assess quality, and suggest improvements. Integrates with GitHub Actions for automated PR reviews!",
+          colabUrl: "https://colab.research.google.com/github/gouthamgo/FineTuning/blob/main/lessons/module4_projects/02_code_review_assistant.ipynb",
+          status: "available",
           icon: "💻"
         }
       ]
@@ -171,6 +181,17 @@ export default function Home() {
           colabUrl: "https://colab.research.google.com/github/gouthamgo/FineTuning/blob/main/lessons/module5_deployment/02_mlops_monitoring.ipynb",
           status: "available",
           icon: "📊"
+        },
+        {
+          id: "m5l3",
+          title: "Cost Optimization & Scaling",
+          duration: "2 hours",
+          difficulty: "Advanced",
+          description: "Reduce ML costs by 90% through serverless deployment, auto-scaling, spot instances, and A/B testing. Save $10K+/year on infrastructure!",
+          colabUrl: "https://colab.research.google.com/github/gouthamgo/FineTuning/blob/main/lessons/module5_deployment/03_cost_optimization_scaling.ipynb",
+          status: "available",
+          featured: true,
+          icon: "💰"
         }
       ]
     },
