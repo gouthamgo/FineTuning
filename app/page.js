@@ -120,17 +120,18 @@ export default function Home() {
     module4: {
       title: "💼 Real-World Projects",
       emoji: "🟠",
-      subtitle: "Build something awesome!",
+      subtitle: "Build portfolio-worthy projects!",
       duration: "Week 4",
       lessons: [
         {
           id: "m4l1",
-          title: "Project: Build a Smart Customer Support Bot",
+          title: "Project: Production Customer Support Bot",
           duration: "3 hours",
           difficulty: "Intermediate",
-          description: "End-to-end project: Fine-tune a model to answer customer questions based on your company docs.",
-          colabUrl: "",
-          status: "coming_soon",
+          description: "End-to-end portfolio project with production code, monitoring, and deployment. Put this on your resume!",
+          colabUrl: "https://colab.research.google.com/github/gouthamgo/FineTuning/blob/main/lessons/module4_projects/01_customer_support_bot.ipynb",
+          status: "available",
+          featured: true,
           icon: "💬"
         },
         {
@@ -153,12 +154,12 @@ export default function Home() {
       lessons: [
         {
           id: "m5l1",
-          title: "Deploy Your Model (Make it Public!)",
+          title: "Deploy to Production (3 Different Ways!)",
           duration: "2 hours",
           difficulty: "Intermediate",
-          description: "From Colab to the cloud! Deploy your model using HuggingFace Spaces, Gradio, or FastAPI.",
-          colabUrl: "",
-          status: "coming_soon",
+          description: "Deploy with HuggingFace Spaces, FastAPI + Docker, and AWS Lambda. Get a live URL for your resume!",
+          colabUrl: "https://colab.research.google.com/github/gouthamgo/FineTuning/blob/main/lessons/module5_deployment/01_deploy_production.ipynb",
+          status: "available",
           icon: "🚀"
         },
         {
@@ -170,6 +171,25 @@ export default function Home() {
           colabUrl: "",
           status: "coming_soon",
           icon: "📊"
+        }
+      ]
+    },
+    module6: {
+      title: "💼 Get Hired!",
+      emoji: "⭐",
+      subtitle: "Turn projects into job offers",
+      duration: "Week 6",
+      lessons: [
+        {
+          id: "m6l1",
+          title: "Portfolio, Resume & Interview Prep",
+          duration: "2 hours",
+          difficulty: "All levels",
+          description: "GitHub portfolio setup, resume bullets that get interviews, and answers to top 20 ML interview questions. This is how you actually get hired!",
+          colabUrl: "https://colab.research.google.com/github/gouthamgo/FineTuning/blob/main/lessons/module6_job_readiness/01_portfolio_interview_prep.ipynb",
+          status: "available",
+          featured: true,
+          icon: "🎯"
         }
       ]
     }
