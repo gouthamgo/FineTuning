@@ -110,9 +110,9 @@ export default function Home() {
           title: "Custom Loss Functions (Get Creative!)",
           duration: "1 hour",
           difficulty: "Advanced",
-          description: "Sometimes the default loss function isn't enough. Let's write our own!",
-          colabUrl: "",
-          status: "coming_soon",
+          description: "Master 5 custom loss functions for imbalanced data, cost-sensitive errors, and more. Write your own production-grade loss functions!",
+          colabUrl: "https://colab.research.google.com/github/gouthamgo/FineTuning/blob/main/lessons/module3_advanced/03_custom_loss_functions.ipynb",
+          status: "available",
           icon: "🎲"
         }
       ]
@@ -164,12 +164,12 @@ export default function Home() {
         },
         {
           id: "m5l2",
-          title: "Monitoring & Improving (Keep it Running!)",
+          title: "MLOps & Monitoring (Production Excellence)",
           duration: "1.5 hours",
           difficulty: "Advanced",
-          description: "Track performance, handle errors, and continuously improve your deployed model.",
-          colabUrl: "",
-          status: "coming_soon",
+          description: "Build a complete monitoring system with Prometheus, structured logging, alerting, and continuous training. This separates good from great ML engineers!",
+          colabUrl: "https://colab.research.google.com/github/gouthamgo/FineTuning/blob/main/lessons/module5_deployment/02_mlops_monitoring.ipynb",
+          status: "available",
           icon: "📊"
         }
       ]
